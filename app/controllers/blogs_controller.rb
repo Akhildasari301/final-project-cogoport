@@ -30,6 +30,12 @@ class BlogsController < ApplicationController
         )
     end
 
+    def get_his_own_blogs
+        t = User.find(params[:id])
+        render json: t.blogs
+    end
+
     def delete
     end
+    
 end

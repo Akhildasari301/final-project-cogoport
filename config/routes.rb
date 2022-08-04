@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   post 'blog', to: "blogs#add"
   put 'blog/:id', to: "blogs#update"
   delete 'blog/:id', to: "blogs#delete"
+  get 'getownall/:id', to: "blogs#get_his_own_blogs"
 end
