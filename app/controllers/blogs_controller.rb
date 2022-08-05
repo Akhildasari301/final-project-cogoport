@@ -36,6 +36,32 @@ class BlogsController < ApplicationController
     end
 
     def delete
+        t = Blog.find(params[:id])
+        t.destroy
+        render json: {"message": "success"}
     end
+
+    def login
+        t = User.find_by(email: params[:email])
+        if t 
+            render json: {"message": "success"}
+            if t.password
+        else
+            render json: {"message": "failure"}
+        end
+    end
+
+    def signup
+        User.create(
+            {
+                name: params[:name],
+                email: params[:email],
+                password: params[:password]
+                
+            }
+        )
+        render json: {"message": "success"}
+    end
+
     
 end

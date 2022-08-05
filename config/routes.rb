@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   put 'blog/:id', to: "blogs#update"
   delete 'blog/:id', to: "blogs#delete"
   get 'getownall/:id', to: "blogs#get_his_own_blogs"
+  get 'login/:email/', to: "blogs#login"
+  post 'signup', to: "blogs#signup"
 end
