@@ -61,6 +61,7 @@ class BlogsController < ApplicationController
     end
 
     def signup
+    
         User.create(
             {
                 name: params[:name],
