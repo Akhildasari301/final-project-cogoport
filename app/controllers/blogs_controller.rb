@@ -46,20 +46,15 @@ class BlogsController < ApplicationController
     def login
         t = User.find_by(email: params[:email])
         if t 
-
             password2 = params[:password];
-            # bcrypt.compare(password2, t.password_digest, function(err, result))
-            # if result
-            #     # console.log("It matches!")
-            #     render json: {"message": "success"}
-            
+            # if BCrypt::Password.new(t.password_digest) == password2
+            #     render json: {"message": "success", "id": t.id}
             # else 
-            #     # console.log("Invalid password!");
             #     render json: {"message": "failure"}
             # end
-            if BCrypt::Password.new(t.password_digest) == password2
-                render json: {"message": "success", "id": t.id}
-            else 
+            if t.password_digest === password2
+                render json: {"message": "success", "user": t}
+            else
                 render json: {"message": "failure"}
             end
         end
@@ -74,12 +69,12 @@ class BlogsController < ApplicationController
             }
         )
         t = User.find_by(email: params[:email])
-        render json: t.id
+        render json: t
     end
 
     def get_random_blogs
         t = Blog.all
        
-        render json: t.sample(3)
+        render json: t.sample(6)
     end
 end
